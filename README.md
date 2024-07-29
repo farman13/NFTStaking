@@ -1,66 +1,68 @@
-## Foundry
+# Foundry Project
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This project demonstrates the deployment and testing of a Solidity smart contract using Foundry.
 
-Foundry consists of:
+## Prerequisites
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+- Ensure you have Foundry installed. If not, you can install it by following the instructions [here](https://getfoundry.sh/).
 
-## Documentation
+## Getting Started
 
-https://book.getfoundry.sh/
+1. **Clone the Repository:**
 
-## Usage
+    ```bash
+    git clone farman13/StakeNFT
+    ```
 
-### Build
+2. **Build the Project:**
 
-```shell
-$ forge build
-```
+    ```bash
+    forge build
+    ```
 
-### Test
+3. **Download OpenZeppelin Contracts Dependencies:**
 
-```shell
-$ forge test
-```
+    ```bash
+    forge install OpenZeppelin/openzeppelin-contracts-upgradeable --no-commit
+    forge install OpenZeppelin/openzeppelin-contracts --no-commit
+    ```
 
-### Format
 
-```shell
-$ forge fmt
-```
+4. **Load Environment Variables:**
 
-### Gas Snapshots
+    ```bash
+    set -o allexport
+    source .env
+    set +o allexport
+    ```
 
-```shell
-$ forge snapshot
-```
+5. **Verify Environment Variables:**
 
-### Anvil
+    ```bash
+    echo $PRIVATE_KEY
+    echo $SEPOLIA_RPC_URL
+    ```
 
-```shell
-$ anvil
-```
+6. **Deploy the Contract to Sepolia Network:**
 
-### Deploy
+    ```bash
+    forge script script/DeployStakeNFT.s.sol --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY
+    ```
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+7. **Run Tests:**
 
-### Cast
+    ```bash
+    forge test
+    ```
 
-```shell
-$ cast <subcommand>
-```
+## Project Structure
 
-### Help
+- `src/` - Contains the Solidity smart contract source files.
+- `script/` - Contains the deployment scripts.
+- `test/` - Contains the test files.
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+
+## License
+
+This project is licensed under the MIT License.
+
